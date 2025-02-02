@@ -65,7 +65,8 @@ li {
 
 .completed {
     text-decoration: line-through;
-    color: gray;
+    color: #28a745;
+
 }
 
 button {
@@ -76,7 +77,7 @@ button {
 }
 
 .edit {
-    background: #ffc107;
+    background: #0000FF;
     color: white;
 }
 
