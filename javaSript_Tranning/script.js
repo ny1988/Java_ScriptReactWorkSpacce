@@ -51,7 +51,7 @@ function displayTasks(filter = "all") {
             <div>
                 <button class="edit" onclick="editTask(${task.id})">Edit</button>
                 <button class="delete" onclick="deleteTask(${task.id})">Delete</button>
-                <button onclick="toggleComplete(${task.id})">${task.completed ? "Undo" : "Complete"}</button>
+                <button class="complete" onclick="toggleComplete(${task.id})">${task.completed ? "Undo" : "Complete"}</button>
             </div>
         `;
 
