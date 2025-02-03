@@ -66,17 +66,57 @@ function clearForm() {
 }
 
 function editTask(id) {
-    let tasks = getTasks();
+    alert("Edit Task");
+
+    let tasks = getTasks(); // Fetch tasks from local storage
     let task = tasks.find(t => t.id === id);
-
-    if (task) {
-        document.getElementById("title").value = task.title;
-        document.getElementById("description").value = task.description;
-        document.getElementById("dueDate").value = task.dueDate;
-
-        deleteTask(id);
+    if (!task) {
+        alert("Task not found!");
+        return;
     }
+
+    // Get input values
+    const title = document.getElementById('title').value.trim();
+    const desc = document.getElementById('description').value.trim();
+    const dueDate = document.getElementById('dueDate').value;
+
+    if (!title || !desc || !dueDate) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const today = new Date().toISOString().split('T')[0]; // Get today's date
+    if (new Date(dueDate) < new Date(today)) {
+        alert('Due date cannot be in the past.');
+        return;
+    }
+
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    if (taskIndex === -1) {
+        alert("Task not found!");
+        return;
+    }
+
+    // Update task
+    tasks[taskIndex] = {
+        ...tasks[taskIndex],
+        title,
+        desc,
+        dueDate
+    };
+
+    // Save updated tasks to local storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+    // Re-render tasks
+    renderTasks(tasks);
+
+    // Reset form
+    document.getElementById("taskForm").reset();
+    document.getElementById('tasks').value = ''; // Clear hidden input field
+    document.getElementById('submitButton').textContent = 'Add Task'; // Reset button text
 }
+
 
 function deleteTask(id) {
     if (confirm("Are you sure you want to delete this task?")) {
