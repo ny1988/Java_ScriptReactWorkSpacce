@@ -1,92 +1,247 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
 }
 
 .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 900px;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    box-sizing: border-box;
+    margin: 20px auto;
 }
 
 h1 {
     text-align: center;
+    margin-top: 10px;
+    color: #333;
 }
 
-.task-form {
+/* Form Styles */
+form {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
-.task-form input {
-    flex: 1;
-    padding: 8px;
+form input,
+form textarea,
+form button,
+form select {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    box-sizing: border-box;
 }
 
-.task-form button {
-    padding: 8px 12px;
-    background: #28a745;
+form button {
+    background-color: #007BFF;
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Filters */
 .filters {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 10px;
 }
 
+.filters select,
 .filters input {
     flex: 1;
-    padding: 8px;
+    min-width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    box-sizing: border-box;
 }
 
+/* Task List Styles */
 ul {
     list-style: none;
     padding: 0;
 }
 
 li {
-    padding: 10px;
-    background: #f1f1f1;
+    background: #fff;
     margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
 }
 
-.completed {
+li.completed {
     text-decoration: line-through;
-    color: #28a745;
-
+    color: #888;
 }
 
-button {
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+th:hover {
+    background-color: #0056b3;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr.completed td:not(.actions) {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Buttons inside Table */
+td button {
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-family: inherit;
+}
+
+td button.complete {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+td button.edit {
+    background-color: #ffc107; /* Amber */
+    color: white;
+}
+
+td button.delete {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+td button.undo {
+    background-color: #17a2b8; /* Blue */
+    color: white;
+}
+
+td button.complete:hover {
+    background-color: #218838;
+}
+
+td button.edit:hover {
+    background-color: #e0a800;
+}
+
+td button.delete:hover {
+    background-color: #c82333;
+}
+
+td button.undo:hover {
+    background-color: #138496;
+}
+
+/* Add space between buttons */
+td button + button {
     margin-left: 5px;
 }
 
-.edit {
-    background: #0000FF;
-    color: white;
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters select,
+    .filters input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+    .actions button {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .actions button i {
+        margin: 0;
+    }
+
+    .actions .button-text {
+        display: none;
+    }
 }
 
-.delete {
-    background: #dc3545;
-    color: white;
-}
-.complete {
-    background: #28a745;
-    color: white;
-}
+@media (min-width: 769px) {
+    .actions button i {
+        display: none;
+    }
 
+    .actions .button-text {
+        display: inline;
+    }
+}
